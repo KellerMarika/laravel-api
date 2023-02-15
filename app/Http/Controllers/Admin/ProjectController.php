@@ -27,7 +27,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::paginate(12);
         $levels = Level::all();
         $types = Type::all();
         $tecnologies = Tecnology::all();

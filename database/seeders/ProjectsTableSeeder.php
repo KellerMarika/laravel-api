@@ -33,7 +33,7 @@ class ProjectsTableSeeder extends Seeder
             $newProject->completed = $faker->numberBetween(0, 1);
             $newProject->type_id = $faker->numberBetween(1, 3);
             $newProject->level_id = $faker->numberBetween(1, 3);
-           // $newProject->tecnologies()->attach($faker->numberBetween(1, 3));
+           //nada $newProject->tecnologies()->attach($newProject->id,Tecnology::inRandomOrder()->limit(3)->pluck('id')->toArray());
             $newProject->save();
         }
     }

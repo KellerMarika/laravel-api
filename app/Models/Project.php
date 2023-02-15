@@ -43,7 +43,7 @@ class Project extends Model
 
     public function posts()
     {
-        return $this->hasMany(PostgresDriver::class);
+        return $this->hasMany(Post::class);
     }
     public function votes()
     {

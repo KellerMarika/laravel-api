@@ -12,7 +12,7 @@ class ProjectController extends Controller
     {
         /* with carica anche le relazioni(nome funzioni nel model) */
         /* paginate quanti risultati per pagina */
-        $projects = Project::all()->paginate(12);
+        $projects = Project::paginate(12);
 
         /* QUERY */
        /*  $project = Project::where(...)->get(); */
@@ -40,11 +40,11 @@ class ProjectController extends Controller
          //  'dati' => $projects,
          //]); 
     } */
-    public function show(Request $request, $project)
+    public function show(project $project)
     {
         /* with carica anche le relazioni(nome funzioni nel model) */
         /* paginate quanti risultati per pagina */
-        $project->load('type','tecnologies','posts');
+        $project->load( 'type', 'tecnologies','level','posts','votes' );
 
         /* QUERY */
        /*  $project = Project::where(...)->get(); */

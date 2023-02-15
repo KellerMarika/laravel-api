@@ -11,11 +11,13 @@
     <section class="my-5">
 
         <div class="projects-index container">
-            <h1 class="pb-3 text-uppercase">All projects:</h1>
-            <div class="card-columns">
+            <h1 class="pb-3 text-uppercase">All projects: </h1>       {{$projects->links()}}
+            <div class="card-columns mt-2 mb-5">
                 <a href="{{ route('admin.projects.create') }}" class="add-project-btn card my-4 p-3 text-uppercase  overflow-hidden shadow">
                     <h2 class=" m-0"><i class ="fa fa-plus"></i> add new</h2>
                 </a>
+
+         
                 @foreach ($projects as $project)
                     <a href="{{ route('admin.projects.show', $project->id) }}" class="card  my-4 overflow-hidden shadow">
 
@@ -40,6 +42,7 @@
                     </a>
                 @endforeach
             </div>
+            {{$projects->links()}}
         </div>
     </section>
 

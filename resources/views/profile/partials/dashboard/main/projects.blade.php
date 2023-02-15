@@ -1,3 +1,6 @@
+
+@dump($a);
+
 <section class="portfolio">
 
 

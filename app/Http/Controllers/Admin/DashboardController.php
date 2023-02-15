@@ -31,6 +31,10 @@ class DashboardController extends Controller
 
   public function home(Request $request)
   {
+/* $a=Tecnology::inRandomOrder()->limit(3)->get();
+$a=$a[0]->id;
+$a=Tecnology::select('id')->inRandomOrder()->limit(3)->get()->toarray(); */
+$a=Tecnology::inRandomOrder()->limit(3)->pluck('id')->toArray();
 
     $request = $request->ip();
 
@@ -64,7 +68,7 @@ class DashboardController extends Controller
       $cities = City::all();
 
       /* passo dati diversi alla stessa view a seconda che sia superadmin o no*/
-      return view('user.dashboard', compact('svgPaths', 'continents', 'request', 'user', 'account', 'userDetail', 'addres', 'projects', 'posts', 'votes', 'users','tecnologies', 'types', 'levels'));
+      return view('user.dashboard', compact('svgPaths', 'continents', 'request', 'user', 'account', 'userDetail', 'addres', 'projects', 'posts', 'votes', 'users','tecnologies', 'types', 'levels','a'));
     } else {
       /* passo dati diversi alla stessa view a seconda che sia superadmin o no*/
       return view('user.dashboard', compact('user', 'account', 'userDetail', 'address', 'projects', 'posts', 'votes', 'users'));
