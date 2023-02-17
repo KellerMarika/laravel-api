@@ -28,6 +28,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::paginate(12);
+        $paginate = 2;
+        $projects = Project::where("type_id", 1)->paginate($paginate? : 12);
         $levels = Level::all();
         $types = Type::all();
         $tecnologies = Tecnology::all();
