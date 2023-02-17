@@ -27,4 +27,5 @@ Route::post("world", [PathController::class, "uploadWorldMap"])->name("path");
 /* lettura tutti progetti */
 Route::get("/projects", [ProjectController::class, 'index']);
 Route::get("/projects/{project}", [ProjectController::class, 'show']);
+Route::get("/home", [HomeController::class, 'index']);
 /* le api non hanno bisogno di un name*/

@@ -54,14 +54,14 @@ $dark_color_dark: darken($dark_color, 5%);
 //font-family: 'Cinzel', serif;
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
 
-@import 'bootstrap/scss/_functions';
-@import 'bootstrap/scss/_variables';
-@import 'bootstrap/scss/mixins/_breakpoints';
+
 
 /*******  MIXIN ********************************************/
 
 /***** MEDIA  QUERIES *****************************************/
-
+@import 'bootstrap/scss/_functions';
+@import 'bootstrap/scss/_variables';
+@import 'bootstrap/scss/mixins/_breakpoints';
 /* visualizzare */
 q {
    border: 1px solid rgb(216, 127, 228);

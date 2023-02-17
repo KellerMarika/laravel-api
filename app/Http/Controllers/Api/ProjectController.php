@@ -12,48 +12,44 @@ class ProjectController extends Controller
     {
         /* with carica anche le relazioni(nome funzioni nel model) */
         /* paginate quanti risultati per pagina */
-        $projects = Project::paginate(12);
 
-        /* QUERY */
-       /*  $project = Project::where(...)->get(); */
+        // PAGINAZIONE 
+        if ($request->input('paginate')) {
+            $projects = Project::with('type', 'tecnologies', 'level', 'posts', 'votes')->paginate($request->input('paginate')); //quanti per pagina
+
+        } else if ($request->input('last')) {
+            $projects = Project::with('type', 'tecnologies', 'level', 'posts', 'votes')->orderBy("created_at", "DESC")->limit($request->input('last'))->get();
+
+        }else if($request->input('last')){
+            
+        }
+
+
+        //più recenti
+
+        /*   Project:all()->paginate($request->input('page'))->order($request->input('order')); */
+        /* 
+        $queryParams=["paginate" => $request->input('page'), "order" => $request->input('order')]
+        $a = Project::all();
+        if ($request->impit('page')) {
+        $a = Project::all()->paginate($request->impit('page'));
+        } else if ($request->impit('order'))
+        $a->orderBy();
+        $b = Project::all(); */
+
+        /*   $a=$request; */
+        /*       return ($a->input('page')); */
 
         return response()->json($projects);
-        /* esempio dati*/
-      /*   return response()->json([
-            'totale' => $projects->count(),
-            'dati' => $projects,
-        ]); */
+
     }
- /*    public function showConFindOrFail(Request $request, $id)
-    {
-         //with carica anche le relazioni(nome funzioni nel model) 
-         //paginate quanti risultati per pagina 
-        $project = Project::with('type','tecnologies','posts')->findOrFail($id);
 
-         //QUERY 
-         //$project = Project::where(...)->get(); 
-
-        return response()->json($project);
-         //esempio dati
-         //return response()->json([
-         //   'totale' => $projects->count(),
-         //  'dati' => $projects,
-         //]); 
-    } */
     public function show(project $project)
     {
-        /* with carica anche le relazioni(nome funzioni nel model) */
-        /* paginate quanti risultati per pagina */
-        $project->load( 'type', 'tecnologies','level','posts','votes' );
 
-        /* QUERY */
-       /*  $project = Project::where(...)->get(); */
+        $project->load('type', 'tecnologies', 'level', 'posts', 'votes');
 
         return response()->json($project);
-        /* esempio dati*/
-      /*   return response()->json([
-            'totale' => $projects->count(),
-            'dati' => $projects,
-        ]); */
+
     }
 }

@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],//specifico i domini che possono accedere alle mie api  back-end:'http://127.0.0.1:8001', frontend: 'http://127.0.0.1:3306
+    'allowed_origins' => [/* 'APP_FRONTEND_URL','APP_URL' */ '*'],//specifico i domini che possono accedere alle mie api  back-end:'http://127.0.0.1:8001', frontend: 'http://127.0.0.1:3306
 /* oppure:  'allowed_origins' => [env('APP_FRONTEND_URL','http://127.0.0.1:8001')],*/
     'allowed_origins_patterns' => [],
 

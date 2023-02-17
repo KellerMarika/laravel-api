@@ -31,10 +31,7 @@ class DashboardController extends Controller
 
   public function home(Request $request)
   {
-/* $a=Tecnology::inRandomOrder()->limit(3)->get();
-$a=$a[0]->id;
-$a=Tecnology::select('id')->inRandomOrder()->limit(3)->get()->toarray(); */
-$a=Tecnology::inRandomOrder()->limit(3)->pluck('id')->toArray();
+
 
     $request = $request->ip();
 

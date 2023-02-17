@@ -58,7 +58,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-       
+
         /* 
         usa le rules dello store project request per validare la creazione dell'elemento */
 
@@ -141,10 +141,10 @@ class ProjectController extends Controller
         ]);
 
         $project->tecnologies()->sync($data['tecnologies']);
-        
-        return redirect()->route('admin.projects.show', $project->id); 
 
-       
+        return redirect()->route('admin.projects.show', $project->id);
+
+
     }
 
     /**
