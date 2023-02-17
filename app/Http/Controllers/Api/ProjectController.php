@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Tecnology;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -22,23 +23,28 @@ class ProjectController extends Controller
             /*FILTER LEVEL  */
         } else if ($request->input('levelFilter')) {
 
-            $projects = Project::with('type', 'tecnologies', 'level', 'posts', 'votes')->where("type_id", $request->input('levelFilter'));
+            $projects = Project::with('type', 'tecnologies', 'level', 'posts', 'votes')->where("type_id", $request->input('levelFilter'))->paginate($paginate ?: 12);
 
 
 
             /*FILTER TYPE  */
         } else if ($request->input('typeFilter')) {
 
-            $projects = Project::with('type', 'tecnologies', 'level', 'posts', 'votes')->where("type_id", $request->input('levelFilter'));
+            $projects = Project::with('type', 'tecnologies', 'level', 'posts', 'votes')->where("type_id", $request->input('typeFilter'))->paginate($paginate ?: 12);
+
+            /*FILTER TECNOLOGY SENZ'H  */
+        } else if ($request->input('tecnologiesFilter')) {
+
+            $projects = Tecnology::findOrFail($request->input('tecnologiesFilter'))->projects()->with('type', 'level', 'posts', 'votes','tecnologies')->paginate($paginate ?: 12);
 
         } else {
-            $projects = Project::with('type', 'tecnologies', 'level', 'posts', 'votes');
+            $projects = Project::with('type', 'tecnologies', 'level', 'posts', 'votes')->paginate($paginate ?: 12);
+
         }
         // ALLA FINE SE C'è DA PAGINARE PAGINO 
-   /*      if (!$request->input('last')) {
-            $projects->paginate($paginate ?: 12); //quanti per pagina
-        }
- */
+
+        //quanti per pagina
+
         return response()->json($projects);
 
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreProjectRequest;
 use App\Http\Requests\Admin\UpdateProjectRequest;
 
+use App\Models\Vote;
 use App\Models\Level;
 use App\Models\Project;
 use App\Models\Tecnology;
@@ -27,15 +28,25 @@ class ProjectController extends Controller
      */
     public function index()
     {
+
+
         $projects = Project::paginate(12);
-        $paginate = 2;
-        $projects = Project::where("type_id", 1)->paginate($paginate? : 12);
+        $a = Vote::orderBy('value', 'DESC')->get();
+        $c = Vote::selectRaw('AVG(value) as average',)->groupBy('project_id')->get();
+        $b = Vote::avg('value');
+        dump($a);
+        dump($c);
+        dump($b);
+
+
+        $paginate = 5;
+        $votes = Vote::all();
         $levels = Level::all();
         $types = Type::all();
         $tecnologies = Tecnology::all();
 
 
-        return view('admin.projects.index', compact("projects", 'levels', 'types', "tecnologies"));
+        return view('admin.projects.index', compact("projects", 'levels', 'types', "tecnologies", 'votes'));
 
     }
 
